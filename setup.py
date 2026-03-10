@@ -11,6 +11,7 @@ setup(
         python-dotenv==1.1.0
         gunicorn==23.0.0
         langchain==0.3.28
+        langchain-google-genai==2.1.12
         langchain-openai==0.3.24
         langchain-community==0.3.31
         langchain-pinecone==0.2.8
