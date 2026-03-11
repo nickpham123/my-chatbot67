@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Body -->
+  <rect x="8" y="18" width="16" height="8" rx="0" fill="#B8860B"/>
+  <!-- Head -->
+  <rect x="10" y="10" width="12" height="10" rx="0" fill="#C4973B"/>
+  <!-- Ears -->
+  <rect x="8" y="8" width="4" height="4" fill="#C4973B"/>
+  <rect x="20" y="8" width="4" height="4" fill="#C4973B"/>
+  <rect x="9" y="9" width="2" height="2" fill="#D4A94B"/>
+  <rect x="21" y="9" width="2" height="2" fill="#D4A94B"/>
+  <!-- Eyes -->
+  <rect x="12" y="13" width="2" height="2" fill="#1a1a2e"/>
+  <rect x="18" y="13" width="2" height="2" fill="#1a1a2e"/>
+  <!-- Eye shine -->
+  <rect x="12" y="13" width="1" height="1" fill="#ffffff"/>
+  <rect x="18" y="13" width="1" height="1" fill="#ffffff"/>
+  <!-- Nose -->
+  <rect x="15" y="16" width="2" height="2" rx="0" fill="#8B6914"/>
+  <!-- Nostrils -->
+  <rect x="15" y="16" width="1" height="1" fill="#6B4F10"/>
+  <rect x="16" y="16" width="1" height="1" fill="#6B4F10"/>
+  <!-- Mouth -->
+  <rect x="14" y="18" width="1" height="1" fill="#8B6914"/>
+  <rect x="17" y="18" width="1" height="1" fill="#8B6914"/>
+  <!-- Cheeks (blush) -->
+  <rect x="10" y="15" width="2" height="1" fill="#E8A0BF" opacity="0.5"/>
+  <rect x="20" y="15" width="2" height="1" fill="#E8A0BF" opacity="0.5"/>
+  <!-- Legs -->
+  <rect x="9" y="26" width="3" height="4" fill="#A07618"/>
+  <rect x="20" y="26" width="3" height="4" fill="#A07618"/>
+  <!-- Feet -->
+  <rect x="8" y="29" width="5" height="2" fill="#8B6914"/>
+  <rect x="19" y="29" width="5" height="2" fill="#8B6914"/>
+  <!-- Belly highlight -->
+  <rect x="12" y="20" width="8" height="4" fill="#D4A94B" opacity="0.4"/>
+  <!-- Tail (tiny) -->
+  <rect x="24" y="20" width="2" height="2" fill="#A07618"/>
+</svg>
