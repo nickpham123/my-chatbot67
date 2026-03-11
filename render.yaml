@@ -3,7 +3,7 @@ services:
     name: rag-chatbot
     runtime: python
     pythonVersion: "3.13.1"
-    buildCommand: pip install -r requirements.txt && pip uninstall pinecone-plugin-inference -y
+    buildCommand: pip install -r requirements.txt && pip uninstall pinecone-plugin-inference pinecone-plugin-assistant -y
     startCommand: gunicorn --chdir src app:app --bind 0.0.0.0:$PORT
     envVars:
       - key: GEMINI_API_KEY
