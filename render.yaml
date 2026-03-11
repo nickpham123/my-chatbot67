@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: rag-chatbot
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn src.app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX_NAME
+        sync: false
+      - key: FLASK_SECRET_KEY
+        sync: false
+
+
+
+
+
+
