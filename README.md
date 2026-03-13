@@ -1,15 +1,17 @@
 ---
-title: my-chatbot67
+title: My Chatbot67
 emoji: 🤖
 colorFrom: blue
 colorTo: green
 sdk: docker
 pinned: false
+license: apache-2.0
+short_description: RAG based ai model
 ---
 
 # RAG Chatbot
 
-A conversational chatbot with Retrieval-Augmented Generation (RAG) using LangChain, Pinecone, and DeepSeek.
+A conversational chatbot with Retrieval-Augmented Generation (RAG) using LangChain, Pinecone, and Gemini.
 
 ## Quickstart
 
@@ -59,10 +61,10 @@ Visit `http://localhost:5000` to chat.
 | Layer       | Tool                          |
 |-------------|-------------------------------|
 | Backend     | Flask + LangChain             |
-| LLM         | DeepSeek V3.2                 |
+| LLM         | Gemini 2.5 Flash              |
 | Embeddings  | HuggingFace sentence-transformers |
 | Vector DB   | Pinecone                      |
-| Database    | Supabase (PostgreSQL)         |
 | Hosting     | Render                        |
 | CI/CD       | GitHub Actions                |
 
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
