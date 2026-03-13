@@ -1,3 +1,12 @@
+---
+title: my-chatbot67
+emoji: 🤖
+colorFrom: blue
+colorTo: green
+sdk: docker
+pinned: false
+---
+
 # RAG Chatbot
 
 A conversational chatbot with Retrieval-Augmented Generation (RAG) using LangChain, Pinecone, and DeepSeek.
