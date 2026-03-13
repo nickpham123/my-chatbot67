@@ -6,3 +6,10 @@ system_prompt = (
     "\n\n"
     "{context}"
 )
+
+rewrite_prompt = (
+    "You are a query rewriter. Your job is to take a user's conversational question "
+    "and rewrite it into a short, keyword-rich search query that will perform well "
+    "against a vector database. Keep the core intent, expand abbreviations, and add "
+    "synonyms where helpful. Return ONLY the rewritten query, nothing else."
+)
