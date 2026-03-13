@@ -39,7 +39,7 @@ def init_components():
 
     embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     docsearch = PineconeVectorStore.from_existing_index(index_name="my-chatbot67", embedding=embedding)
-    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 5})
 
     chat_model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=GEMINI_API_KEY)
 
@@ -55,6 +55,11 @@ def init_components():
 
 def rewrite_query(original_query: str) -> str:
     """Use Gemini to rewrite the user's question into a better search query."""
+    # Skip rewriting for short, clear queries
+    if len(original_query.split()) <= 5:
+        print(f"[Query Rewrite] Skipped (short query): '{original_query}'")
+        return original_query
+
     result = rewrite_llm.invoke(REWRITE_PROMPT.format_messages(input=original_query))
     rewritten = result.content.strip()
     print(f"[Query Rewrite] '{original_query}' -> '{rewritten}'")
@@ -79,6 +84,12 @@ def chat():
 
     # Step 2: Retrieve documents using the rewritten query
     docs = retriever.invoke(search_query)
+
+    # Log retrieved documents for debugging
+    print(f"\n[Retrieved {len(docs)} documents]")
+    for i, doc in enumerate(docs):
+        preview = doc.page_content[:150].replace('\n', ' ')
+        print(f"  Doc {i+1}: {preview}...")
 
     # Step 3: Generate answer using the ORIGINAL question + retrieved docs
     response = answer_chain.invoke({"input": original_msg, "context": docs})

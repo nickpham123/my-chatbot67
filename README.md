@@ -1,5 +1,5 @@
 ---
-title: My Chatbot67
+title: my-chatbot67
 emoji: 🤖
 colorFrom: blue
 colorTo: green
