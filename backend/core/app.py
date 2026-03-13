@@ -23,21 +23,19 @@ GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
 
-embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+rag_chain = None
 
-index_name = "my-chatbot67"
-
-docsearch = PineconeVectorStore.from_existing_index(index_name=index_name, embedding=embedding)
-
-retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3} )
-chatModel = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=GEMINI_API_KEY)
-prompt = ChatPromptTemplate.from_messages([
-    ("system", system_prompt),
-    ("human", "{input}")
-])
-
-question_answer_chain = create_stuff_documents_chain(chatModel, prompt)
-rag_chain = create_retrieval_chain(retriever, question_answer_chain)
+def get_rag_chain():
+    embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    docsearch = PineconeVectorStore.from_existing_index(index_name="my-chatbot67", embedding=embedding)
+    retriever = docsearch.as_retriever(search_type="similarity", search_kwargs={"k": 3})
+    chatModel = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=GEMINI_API_KEY)
+    prompt = ChatPromptTemplate.from_messages([
+        ("system", system_prompt),
+        ("human", "{input}")
+    ])
+    question_answer_chain = create_stuff_documents_chain(chatModel, prompt)
+    return create_retrieval_chain(retriever, question_answer_chain)
 
 @app.route("/")
 def index():
@@ -45,9 +43,12 @@ def index():
 
 @app.route("/ask", methods=["GET", "POST"])
 def chat():
+    global rag_chain
+    if rag_chain is None:
+        rag_chain = get_rag_chain()
     msg = request.json["message"]
     response = rag_chain.invoke({"input": msg})
     return jsonify({"response": response["answer"]})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port = 8080, debug= True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
